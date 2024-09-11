@@ -1,101 +1,30 @@
-
-
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './src/screens/Home';
+import Details from './src/screens/Details';
+import { RootStackParamList } from './src/types/navigation';
 
 
-const App = () => {
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const MyStack = () => {
   return (
-  <View style={styles.container}>
-    <View style={styles.header}>
-      <Text>
-        Welcome to Ecommerce App!
-      </Text>
-    </View>
-    <ScrollView style={styles.container}>
-      <View style={styles.search}>
-        <TextInput placeholder='Search'>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home} //refers to the import or the location of whatever page/component is going to be used
+          options={{title: 'Welcome'}} //multiples options, include a title for each page in needed
+        />
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          //options={{title: 'Details'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
-        </TextInput>
-      </View>
-      <View style={styles.grid}>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-      </View>
-      
-    </ScrollView>
-    
-  </View>
-  )
-}
-
-const Item = () => {
-  return (
-    <TouchableOpacity style={styles.cells}>
-      <Text style={styles.text}>
-        Shop item
-      </Text>
-  </TouchableOpacity>
-  )
-}
-
-
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-  },
-  grid:{
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-  text:{
-    color: 'red',
-    fontSize: 20,
-  },
-  header:{
-    height: 100,
-    width: '100%',
-    backgroundColor: 'cyan',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  cells:{
-    width: '48%',
-    height: 100,
-    borderWidth: 2,
-    margin: '1%',
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
-  },
-  search:{
-    borderWidth: 2,
-    margin: '1%',
-    padding: '2%',
-  }
-})
-
-export default App;
+export default MyStack;

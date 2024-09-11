@@ -9,10 +9,15 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation';
 
+type HomeProps = {
+    navigation: NativeStackScreenProps<RootStackParamList, 'Home'>['navigation'];
+    route?: NativeStackScreenProps<RootStackParamList, 'Home'>['route']; // Make route optional
+  };
 
-const App = () => {
+const Home = ({ navigation }: HomeProps) => {
   return (
   <View style={styles.container}>
     <View style={styles.header}>
@@ -24,25 +29,26 @@ const App = () => {
       <View style={styles.search}>
         <TextInput placeholder='Search'>
 
+
+
+
         </TextInput>
       </View>
       <View style={styles.grid}>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
+        <Item navigation={navigation} />
       </View>
       
     </ScrollView>
@@ -51,10 +57,10 @@ const App = () => {
   )
 }
 
-const Item = () => {
+const Item = ({ navigation }: HomeProps) => {
   return (
     <TouchableOpacity style={styles.cells}>
-      <Text style={styles.text}>
+      <Text style={styles.text} onPress={() => navigation.navigate('Details')}>
         Shop item
       </Text>
   </TouchableOpacity>
@@ -98,4 +104,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default App;
+export default Home;
