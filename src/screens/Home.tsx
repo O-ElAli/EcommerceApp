@@ -34,21 +34,29 @@ const Home = ({ navigation }: HomeProps) => {
 
         </TextInput>
       </View>
+      <ScrollView horizontal={true} style={styles.container}>
+        
+        <HItem navigation={navigation} />
+        <HItem navigation={navigation} />
+        <HItem navigation={navigation} />
+        <HItem navigation={navigation} />
+      
+      </ScrollView>
       <View style={styles.grid}>
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
-        <Item navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
+        <VItem navigation={navigation} />
       </View>
       
     </ScrollView>
@@ -57,7 +65,17 @@ const Home = ({ navigation }: HomeProps) => {
   )
 }
 
-const Item = ({ navigation }: HomeProps) => {
+const HItem = ({navigation}: HomeProps) => {
+  return (
+    <TouchableOpacity style={styles.cellsH}>
+      <Text style={styles.text} onPress={() => navigation.navigate('Details')}>
+        Shop item
+      </Text>
+  </TouchableOpacity>
+  )
+}
+
+const VItem = ({ navigation }: HomeProps) => {
   return (
     <TouchableOpacity style={styles.cells}>
       <Text style={styles.text} onPress={() => navigation.navigate('Details')}>
@@ -89,6 +107,16 @@ const styles = StyleSheet.create({
   },
   cells:{
     width: '48%',
+    height: 100,
+    borderWidth: 2,
+    margin: '1%',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+  cellsH:{
+    width: 180,
     height: 100,
     borderWidth: 2,
     margin: '1%',
